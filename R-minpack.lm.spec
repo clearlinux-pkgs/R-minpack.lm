@@ -4,14 +4,14 @@
 #
 Name     : R-minpack.lm
 Version  : 1.2.1
-Release  : 15
+Release  : 16
 URL      : https://cran.r-project.org/src/contrib/minpack.lm_1.2-1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/minpack.lm_1.2-1.tar.gz
 Summary  : R Interface to the Levenberg-Marquardt Nonlinear Least-Squares
 Group    : Development/Tools
 License  : BSD-3-Clause-Attribution GPL-3.0
-Requires: R-minpack.lm-lib
-BuildRequires : clr-R-helpers
+Requires: R-minpack.lm-lib = %{version}-%{release}
+BuildRequires : buildreq-R
 
 %description
 No detailed description available
@@ -32,11 +32,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523318826
+export SOURCE_DATE_EPOCH=1552776279
 
 %install
+export SOURCE_DATE_EPOCH=1552776279
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1523318826
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -71,8 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library minpack.lm|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  minpack.lm || :
 
 
 %files
@@ -97,7 +96,6 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/minpack.lm/help/paths.rds
 /usr/lib64/R/library/minpack.lm/html/00Index.html
 /usr/lib64/R/library/minpack.lm/html/R.css
-/usr/lib64/R/library/minpack.lm/libs/symbols.rds
 
 %files lib
 %defattr(-,root,root,-)
