@@ -4,7 +4,7 @@
 #
 Name     : R-minpack.lm
 Version  : 1.2.1
-Release  : 26
+Release  : 27
 URL      : https://cran.r-project.org/src/contrib/minpack.lm_1.2-1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/minpack.lm_1.2-1.tar.gz
 Summary  : R Interface to the Levenberg-Marquardt Nonlinear Least-Squares
@@ -12,7 +12,6 @@ Group    : Development/Tools
 License  : BSD-3-Clause-Attribution GPL-3.0
 Requires: R-minpack.lm-lib = %{version}-%{release}
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
 No detailed description available
@@ -27,21 +26,22 @@ lib components for the R-minpack.lm package.
 
 %prep
 %setup -q -c -n minpack.lm
+cd %{_builddir}/minpack.lm
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571865571
+export SOURCE_DATE_EPOCH=1589521132
 
 %install
-export SOURCE_DATE_EPOCH=1571865571
+export SOURCE_DATE_EPOCH=1589521132
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
